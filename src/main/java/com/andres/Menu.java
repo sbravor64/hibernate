@@ -4,6 +4,7 @@ import org.hibernate.Session;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Menu {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -77,10 +78,16 @@ public class Menu {
         List<EstadisticasEntity> list = session.createQuery("FROM EstadisticasEntity es WHERE es.temporada='04/05' and es.puntosPorPartido>10").list();
         List<JugadoresEntity> listJ = session.createQuery("FROM JugadoresEntity").list();
 
+        AtomicInteger count= new AtomicInteger();
+
         list.forEach(e -> { listJ.forEach(j -> {
                 if(j.getCodigo() ==e.getJugador()){
+                    count.getAndIncrement();
                     System.out.println("Nombre: " + j.getNombre() + " | Media: " + e.getPuntosPorPartido() + " | Temporada: " + e.getTemporada());
-                } }); });
+                }
+        }); });
+
+        System.out.println("Hay un total de " + count.get() + " Jugadores");
     }
 
     private static void añadirJugador(int codigo, String nombre, String procedencia, String altura, int peso, String posicion, String nombre_equipo) {
