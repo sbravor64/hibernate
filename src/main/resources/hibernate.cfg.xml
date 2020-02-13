@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://192.168.22.148:3306/nba</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">andres</property>
+        <property name="connection.password">Andresbravo97.</property>
+        <mapping resource="EquiposEntity.hbm.xml"/>
+        <mapping class="com.andres.EquiposEntity"/>
+        <mapping resource="EstadisticasEntity.hbm.xml"/>
+        <mapping class="com.andres.EstadisticasEntity"/>
+        <mapping resource="JugadoresEntity.hbm.xml"/>
+        <mapping class="com.andres.JugadoresEntity"/>
+        <mapping resource="PartidosEntity.hbm.xml"/>
+        <mapping class="com.andres.PartidosEntity"/>
+
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
